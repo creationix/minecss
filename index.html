@@ -9,12 +9,6 @@
         }
 
         .icon,
-        .block {
-            float: left;
-            margin: 10px;
-        }
-
-        .icon,
         .block div {
             width: 256px;
             height: 256px;
@@ -27,14 +21,19 @@
             width: 256px;
             height: 256px;
             transform-style: preserve-3d;
+        }
+
+        .gallery .block,
+        .gallery .icon {
+            float: left;
+            margin: 10px;
+        }
+
+        .gallery .block {
             animation-name: simple-spin;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
             animation-duration: 5s;
-        }
-
-        .detached {
-            transform-style: detached;
         }
 
         @keyframes simple-spin {
@@ -51,17 +50,6 @@
             }
         }
 
-        .frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            transform: perspective(1000px);
-            transform-style: preserve-3d;
-        }
 
 
         .block div {
@@ -74,7 +62,7 @@
         }
 
         .block .back {
-            transform: rotateY(180deg) translate3d(0, 0, 128px);
+            transform: translate3d(0, 0, -128px);
         }
 
         .block .right {
@@ -82,91 +70,49 @@
         }
 
         .block .left {
-            transform: rotateY(270deg) translate3d(0, 0, 128px);
+            transform: rotateY(90deg) translate3d(0, 0, -128px);
         }
 
         .block .top {
-            transform: rotateX(90deg) translate3d(0, 0, 128px);
+            transform: rotateY(90deg) rotateX(90deg) translate3d(0, 0, 128px);
         }
 
         .block .bottom {
-            transform: rotateX(270deg) translate3d(0, 0, 128px);
+            transform: rotateY(90deg) rotateX(90deg) translate3d(0, 0, -128px);
         }
 
-        .grass_path_top.top {
+        /* Inset 1 used for sides of cactus and top of dirt path */
+        .block .inset1.top {
             transform: rotateX(90deg) translate3d(0, 0, 112px);
         }
 
-        .cactus_side.front {
+        .block .inset1.front {
             transform: translate3d(0, 0, 112px);
         }
 
-        .cactus_side.back {
-            transform: rotateY(180deg) translate3d(0, 0, 112px);
+        .block .inset1.back {
+            transform: translate3d(0, 0, -112px);
         }
 
-        .cactus_side.right {
+        .block .inset1.right {
             transform: rotateY(90deg) translate3d(0, 0, 112px);
         }
 
-        .cactus_side.left {
-            transform: rotateY(270deg) translate3d(0, 0, 112px);
+        .block .inset1.left {
+            transform: rotateY(90deg) translate3d(0, 0, -112px);
+        }
+
+        /* Inset 7 used for top of bed */
+        .block .inset7.top {
+            transform: rotateY(90deg) rotateX(90deg) translate3d(0, 0, 16px);
+        }
+
+        /* Inset 3 used for bottom of beds */
+        .block .inset3.bottom {
+            transform: rotateY(90deg) rotateX(90deg) translate3d(0, 0, -80px);
         }
     </style>
+    <script src="app.js"></script>
 </head>
-
-<body>
-    <div class="block">
-        <div class="left grass_path_side"></div>
-        <div class="right grass_path_side"></div>
-        <div class="front grass_path_side"></div>
-        <div class="back grass_path_side"></div>
-        <div class="top grass_path_top"></div>
-        <div class="bottom dirt"></div>
-    </div>
-    <div class="block">
-        <div class="left grass_side"></div>
-        <div class="right grass_side"></div>
-        <div class="front grass_side"></div>
-        <div class="back grass_side"></div>
-        <div class="top grass_top"></div>
-        <div class="bottom dirt"></div>
-    </div>
-    <div class="block">
-        <div class="left jukebox_side"></div>
-        <div class="right jukebox_side"></div>
-        <div class="front jukebox_side"></div>
-        <div class="back jukebox_side"></div>
-        <div class="top jukebox_top"></div>
-        <div class="bottom planks_oak"></div>
-    </div>
-    <div class="block">
-        <div class="left crafting_table_side"></div>
-        <div class="right crafting_table_side"></div>
-        <div class="front crafting_table_front"></div>
-        <div class="back crafting_table_side"></div>
-        <div class="top crafting_table_top"></div>
-        <div class="bottom planks_oak"></div>
-    </div>
-    <div class="block">
-        <div class="left cactus_side"></div>
-        <div class="right cactus_side"></div>
-        <div class="front cactus_side"></div>
-        <div class="back cactus_side"></div>
-        <div class="top cactus_top"></div>
-        <div class="bottom cactus_bottom"></div>
-    </div>
-    <div class="block">
-        <div class="left bookshelf"></div>
-        <div class="right bookshelf"></div>
-        <div class="front bookshelf"></div>
-        <div class="back bookshelf"></div>
-        <div class="top planks_oak"></div>
-        <div class="bottom planks_oak"></div>
-    </div>
-    <div class="icon grass_side"></div>
-    <div class="icon iron_ore"></div>
-    <div class="icon jukebox_side"></div>
-</body>
 
 </html>
