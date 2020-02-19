@@ -142,7 +142,7 @@ function makeBlock(name, mask = 0b111111) {
             block.appendChild(back);
         }
     }
-    if (mask & 16) {
+    if (mask & 32) {
         const texture = (textures[5] || textures[textures.length - 1]).trim();
         if (texture) {
             const left = document.createElement('div');
@@ -169,7 +169,269 @@ function gallery() {
     return gallery;
 }
 
-window.onload = () => {
-    document.body.appendChild(gallery());
+
+const transparency = {
+    "bed_head": 1,
+    "bed_feet": 1,
+    "leaves_oak": 1,
+    "water": 2,
+};
+
+function tlevel(name) {
+    return name ? transparency[name] || 0 : Infinity;
 }
 
+function chunk({ short, blocks }) {
+
+    const grid = {};
+
+    function set(x, y, z, block) {
+        if (block) {
+            grid[`${x}:${y}:${z}`] = block
+        } else {
+            delete grid[`${x}:${y}:${z}`];
+        }
+    }
+
+    function get(x, y, z) {
+        return grid[`${x}:${y}:${z}`] || null;
+    }
+
+    // Convert the string based map to the hashmap
+    for (let y = 0; blocks[y]; y++) {
+        const layer = blocks[y];
+        for (let z = 0; z < 16; z++) {
+            for (let x = 0; x < 16; x++) {
+                const block = short[layer.substr(z * 16 + x, 1)];
+                if (block) {
+                    grid[`${x}:${y}:${z}`] = block;
+                }
+            }
+        }
+    }
+
+    // Now render blocks on screen.
+    const mid = blocks.length * 128;
+    const chunk = document.createElement('div');
+    chunk.setAttribute('class', 'chunk');
+
+    for (let y = 0; blocks[y]; y++) {
+        for (let z = 0; z < 16; z++) {
+            for (let x = 0; x < 16; x++) {
+                const name = get(x, y, z);
+                if (!name) continue;
+                const self = tlevel(name);
+                // Simple mask, assume all blocks are opaque.
+                // TODO: lookup non-opaque blocks.
+                const mask =
+                    (tlevel(get(x, y - 1, z)) <= self ? 0 : 1) | // top
+                    (tlevel(get(x, y + 1, z)) <= self ? 0 : 2) | // bottom
+                    (tlevel(get(x, y, z + 1)) <= self ? 0 : 4) | // front
+                    (tlevel(get(x + 1, y, z)) <= self ? 0 : 8) | // right
+                    (tlevel(get(x, y, z - 1)) <= self ? 0 : 16) |// back
+                    (tlevel(get(x - 1, y, z)) <= self ? 0 : 32); // left
+                if (!mask) continue;
+                console.log(x, y, z, name, mask.toString(2));
+                const block = makeBlock(name, mask);
+                block.style.transform = `translate3d(${x * 256 - 2048}px, ${y * 256 - mid}px, ${z * 256 - 2048}px)`;
+                chunk.appendChild(block);
+            }
+        }
+    }
+
+
+    return chunk;
+}
+
+window.onload = () => {
+    // document.body.appendChild(gallery());
+    document.body.appendChild(chunk(map));
+}
+
+
+const map = {
+    short: {
+        "g": "grass",
+        "d": "dirt",
+        "s": "stone",
+        "c": "coal_ore",
+        "D": "stone_diorite",
+        "o": "log_oak",
+        "O": "leaves_oak",
+        "l": "lava",
+        "w": "water",
+        "b": "bed_head",
+        "B": "bed_feet",
+    },
+    blocks: [
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "      O         " +
+        "                " +
+        "                " +
+        "                ",
+
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "  O             " +
+        " OoO            " +
+        "  O             " +
+        "      O         " +
+        "     OoO        " +
+        "      O         " +
+        "                " +
+        "                ",
+
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "  O             " +
+        " OOO            " +
+        "OOoOO           " +
+        " OOO  O         " +
+        "  O  OOO        " +
+        "    OOoOO       " +
+        "     OOO        " +
+        "      O         " +
+        "                ",
+
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "  o             " +
+        "                " +
+        "      O         " +
+        "     OoO        " +
+        "      O         " +
+        "                " +
+        "                ",
+
+        "                " +
+        "                " +
+        "      ggg       " +
+        "     ggggg      " +
+        "      ggg       " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "  o             " +
+        "                " +
+        " b              " +
+        " B    o         " +
+        "                " +
+        "                " +
+        "                ",
+
+        "   gggggggggg   " +
+        "  gggggggggggg  " +
+        " gggggggggggggg " +
+        "gggggggggggggggg" +
+        "gggggggggggggggg" +
+        "gggggggggggggggg" +
+        "wwwwwggggggggggg" +
+        "ggggwwwwgggwwwww" +
+        "gggggwwwwwwwwggg" +
+        "ggggggwwwwgggggg" +
+        "gggggggggggggggg" +
+        "gggggggggggggggg" +
+        "gggggggggggggggg" +
+        "gggggggggggggggg" +
+        "ggggggggggggg   " +
+        "ggggggggggg     ",
+
+        "gggddddddddddggg" +
+        "ggddddddddddddgg" +
+        "gddddddddddddddg" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddddd" +
+        "dddddddddddddggg" +
+        "dddddddddddggggg",
+
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "sssssssssssssssd" +
+        " ssssssssssssddd" +
+        "  sssssssssddddd" +
+        "     ssssddddddd",
+
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "llssssssssssssss" +
+        "lllllllllsssssss",
+
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "ssssssssssssssss" +
+        "cccsssDDDDDsssdd",
+    ]
+};
