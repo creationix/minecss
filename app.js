@@ -173,8 +173,11 @@ function gallery() {
 const transparency = {
     "bed_head": 1,
     "bed_feet": 1,
+    "cactus": 1,
     "leaves_oak": 1,
     "water": 2,
+    "glass": 2,
+    "grass_path": 3,
 };
 
 function tlevel(name) {
@@ -262,6 +265,12 @@ const map = {
         "w": "water",
         "b": "bed_head",
         "B": "bed_feet",
+        "C": "cactus",
+        "p": "grass_path",
+        "G": "gravel",
+        "T": "crafting_table",
+        "S": "bookshelf",
+        "G": "glass",
     },
     blocks: [
         "                " +
@@ -319,7 +328,7 @@ const map = {
         "                " +
         "                " +
         "                " +
-        "                " +
+        "            C   " +
         "                " +
         "                " +
         "                " +
@@ -334,37 +343,37 @@ const map = {
 
         "                " +
         "                " +
-        "      ggg       " +
-        "     ggggg      " +
-        "      ggg       " +
+        "      pgg       " +
+        "     gppgg      " +
+        "      gpg   C   " +
         "                " +
-        "                " +
+        "          C     " +
         "                " +
         "                " +
         "  o             " +
-        "                " +
-        " b              " +
-        " B    o         " +
-        "                " +
+        "       SS  GGGGG" +
+        "   bT      G   G" +
+        "   B  o    G   G" +
+        "           GGGGG" +
         "                " +
         "                ",
 
         "   gggggggggg   " +
         "  gggggggggggg  " +
-        " gggggggggggggg " +
-        "gggggggggggggggg" +
-        "gggggggggggggggg" +
-        "gggggggggggggggg" +
-        "wwwwwggggggggggg" +
-        "ggggwwwwgggwwwww" +
+        " gggggdddgggggg " +
+        "gggggdddddgggggg" +
+        "ggggggdddggggggg" +
+        "gggggggpgggggggg" +
+        "wwwwwggppggggggg" +
+        "ggggwwwwpggwwwww" +
         "gggggwwwwwwwwggg" +
         "ggggggwwwwgggggg" +
-        "gggggggggggggggg" +
-        "gggggggggggggggg" +
-        "gggggggggggggggg" +
-        "gggggggggggggggg" +
-        "ggggggggggggg   " +
-        "ggggggggggg     ",
+        " ggggggggggggggg" +
+        "  gggggggggggggg" +
+        "  gggggggggggggg" +
+        "  gggggggggggggg" +
+        "    gggggggggggg" +
+        "      ggggg     ",
 
         "gggddddddddddggg" +
         "ggddddddddddddgg" +
@@ -372,16 +381,16 @@ const map = {
         "dddddddddddddddd" +
         "dddddddddddddddd" +
         "dddddddddddddddd" +
+        "wddddddddddddddd" +
         "dddddddddddddddd" +
         "dddddddddddddddd" +
         "dddddddddddddddd" +
-        "dddddddddddddddd" +
-        "dddddddddddddddd" +
-        "dddddddddddddddd" +
-        "dddddddddddddddd" +
-        "dddddddddddddddd" +
-        "dddddddddddddggg" +
-        "dddddddddddggggg",
+        " ddddddddddddddd" +
+        "  dddddddddddddd" +
+        "    dddddddddddd" +
+        "    dddddddddddd" +
+        "      dddddddggg" +
+        "        dddggggg",
 
         "ssssssssssssssss" +
         "ssssssssssssssss" +
@@ -389,15 +398,15 @@ const map = {
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
+        "wsssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "sssssssssssssssd" +
-        " ssssssssssssddd" +
-        "  sssssssssddddd" +
+        "     sssssssssss" +
+        "     sssssssssss" +
+        "     ssssssssssd" +
+        "       ssssssddd" +
+        "       ssssddddd" +
         "     ssssddddddd",
 
         "ssssssssssssssss" +
@@ -406,16 +415,16 @@ const map = {
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
+        "wsssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "llssssssssssssss" +
-        "lllllllllsssssss",
+        "Gsssssssssssssss" +
+        "GGGsssssssssssss" +
+        "llGGGGGGGGssssss" +
+        "lllllllllGssssss",
 
         "ssssssssssssssss" +
         "ssssssssssssssss" +
@@ -423,7 +432,7 @@ const map = {
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
-        "ssssssssssssssss" +
+        "wsssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
@@ -433,5 +442,22 @@ const map = {
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "cccsssDDDDDsssdd",
+
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "w               " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                " +
+        "                ",
     ]
 };
