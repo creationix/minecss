@@ -239,14 +239,14 @@ function chunk({ short, blocks }) {
 
     function set(x, y, z, block) {
         if (block) {
-            grid[`${x}:${y}:${z}`] = block
+            grid[`${x}: ${y}: ${z} `] = block
         } else {
-            delete grid[`${x}:${y}:${z}`];
+            delete grid[`${x}: ${y}: ${z} `];
         }
     }
 
     function get(x, y, z) {
-        return grid[`${x}:${y}:${z}`] || null;
+        return grid[`${x}: ${y}: ${z} `] || null;
     }
 
     // Convert the string based map to the hashmap
@@ -256,7 +256,7 @@ function chunk({ short, blocks }) {
             for (let x = 0; x < 16; x++) {
                 const block = short[layer.substr(z * 16 + x, 1)];
                 if (block) {
-                    grid[`${x}:${y}:${z}`] = block;
+                    grid[`${x}: ${y}: ${z} `] = block;
                 }
             }
         }
@@ -289,6 +289,28 @@ function chunk({ short, blocks }) {
     const chunk = document.createElement('div');
     chunk.setAttribute('class', 'chunk');
 
+    let rx = -30;
+    let ry = 45;
+    let orx = 0;
+    let ory = 0;
+    requestAnimationFrame(updateRotation);
+    function updateRotation() {
+        if (rx !== orx || ry !== ory) {
+            chunk.style.transform = `perspective(2000px) translate3d(0, 0, -6000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+            orx = rx;
+            ory = ry;
+        }
+        requestAnimationFrame(updateRotation);
+    }
+
+    window.onpointermove = (evt) => {
+        evt.preventDefault();
+        rx -= evt.movementY / 2;
+        if (rx < -90) rx = -90;
+        if (rx > 90) rx = 90;
+        ry += evt.movementX / 2;
+    }
+
     for (let y = 0; blocks[y]; y++) {
         for (let z = 0; z < 16; z++) {
             for (let x = 0; x < 16; x++) {
@@ -302,9 +324,9 @@ function chunk({ short, blocks }) {
                     shouldRender(name, get(x, y, z - 1), 16) | // back
                     shouldRender(name, get(x - 1, y, z), 32);  // left
                 if (!mask) continue;
-                // console.log(x, y, z, name, mask.toString(2));
+                console.log(x, y, z, name, mask.toString(2));
                 const block = makeBlock(name, mask);
-                block.style.transform = `translate3d(${x * 256 - 2048}px, ${y * 256 - mid}px, ${z * 256 - 2048}px)`;
+                block.style.transform = `translate3d(${x * 256 - 2048 + 128}px, ${y * 256 - mid}px, ${z * 256 - 2048 + 128}px)`;
                 chunk.appendChild(block);
             }
         }
