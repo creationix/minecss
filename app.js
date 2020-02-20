@@ -18,6 +18,8 @@ const blocks = {
     diamond_ore: ["diamond_ore"],
     dirt_podzol: ["dirt_podzol_top", "dirt", "dirt_podzol_side"],
     dirt: ["dirt"],
+    door_wood_lower: [" ", " ", "door_wood_lower inset1", " ", " ", " "],
+    door_wood_upper: [" ", " ", "door_wood_upper inset1", " ", " ", " "],
     emerald_block: ["emerald_block"],
     emerald_ore: ["emerald_ore"],
     furnace: ["furnace_top", "stone", "furnace_front_on", "furnace_side"],
@@ -76,6 +78,7 @@ const blocks = {
     redstone_block: ["redstone_block"],
     redstone_ore: ["redstone_ore"],
     sand: ["sand"],
+    sea_lantern: ["sea_lantern"],
     snow: ["snow", "dirt", "grass_side_snowed"],
     stone_diorite: ["stone_diorite"],
     stone_granite: ["stone_granite"],
@@ -178,9 +181,11 @@ function gallery() {
 
 
 const transparency = {
-    "leaves_oak": 1,
-    "water": 2,
-    "glass": 2,
+    leaves_oak: 1,
+    water: 2,
+    glass: 2,
+    door_wood_lower: 3,
+    door_wood_upper: 3
 };
 const insets = {};
 for (const name in blocks) {
@@ -256,6 +261,28 @@ function chunk({ short, blocks }) {
         }
     }
 
+    function hide(name, extra) {
+        let x = Math.floor(Math.random() * 16);
+        let y = Math.floor(Math.random() * blocks.length);
+        let z = Math.floor(Math.random() * 16);
+        if (get(x, y, z) === 'stone') {
+            set(x, y, z, name);
+        }
+        for (let i = 0; i < extra; i++) {
+            x += Math.floor(Math.random() * 3 - 1);
+            y += Math.floor(Math.random() * 3 - 1);
+            z += Math.floor(Math.random() * 3 - 1);
+            if (get(x, y, z) === 'stone') {
+                set(x, y, z, name);
+            }
+        }
+    }
+
+    for (let i = 0; i < 20; i++) { hide("diamond_ore", 1); }
+    for (let i = 0; i < 30; i++) { hide("coal_ore", 4); }
+    for (let i = 0; i < 20; i++) { hide("redstone_ore", 3); }
+    for (let i = 0; i < 30; i++) { hide("iron_ore", 3); }
+
     // Now render blocks on screen.
     const mid = blocks.length * 128;
     const chunk = document.createElement('div');
@@ -288,7 +315,11 @@ function chunk({ short, blocks }) {
 
 const map = {
     short: {
+        "@": "sea_lantern",
         "#": "gravel",
+        "+": "diamond_ore",
+        "1": "door_wood_upper",
+        "2": "door_wood_lower",
         "B": "bed_feet",
         "b": "bed_head",
         "C": "cactus",
@@ -297,12 +328,14 @@ const map = {
         "D": "stone_diorite",
         "G": "glass",
         "g": "grass",
+        "I": "iron_ore",
         "j": "jukebox",
         "l": "lava",
         "O": "leaves_oak",
         "o": "log_oak",
         "p": "grass_path",
         "P": "planks_oak",
+        "r": "redstone_ore",
         "S": "bookshelf",
         "s": "stone",
         "T": "crafting_table",
@@ -354,10 +387,10 @@ const map = {
         "  O             " +
         " OOO            " +
         "OOoOO           " +
-        " OOO  O    PPPPP" +
+        " OOO  O    oPGPo" +
         "  O  OOO   P   P" +
         "    OOoOO  P   P" +
-        "     OOO   PPPPP" +
+        "     OOO   oPGPo" +
         "      O         " +
         "                ",
 
@@ -371,10 +404,10 @@ const map = {
         "                " +
         "                " +
         "  o             " +
-        "           PGGGP" +
+        "           oP1Po" +
         "      O    G   G" +
         "     OoO   G   G" +
-        "      O    PGGGP" +
+        "      O    oGGGo" +
         "                " +
         "                ",
 
@@ -388,10 +421,10 @@ const map = {
         "                " +
         "                " +
         "  o             " +
-        "       SS  PGGGP" +
+        "       SS  oP2Po" +
         "   bT      G   G" +
         "   B  o    G j G" +
-        "           PGGGP" +
+        "           oGGGo" +
         "                " +
         "                ",
 
@@ -420,7 +453,7 @@ const map = {
         "dddddddddddddddd" +
         "wddddddddddddddd" +
         "dddddddddddddddd" +
-        "dddddddddddddddd" +
+        "ddddddd@dddddddd" +
         "dddddddddddddddd" +
         " ddddddddddddddd" +
         "  dddddddddddddd" +
@@ -429,56 +462,56 @@ const map = {
         "      dddddddggg" +
         "        dddggggg",
 
+        "sssscccsssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "wsssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "     sssssssssss" +
-        "     sssssssssss" +
-        "     ssssssssssd" +
+        "sssssssssssssssc" +
+        "sssssssssssssssc" +
+        "wssssssccssssssc" +
+        "@ssss      sssss" +
+        "sssss      sssss" +
+        "ssss       sssss" +
+        "          ssssss" +
+        "         sssssss" +
+        "        sssssssd" +
         "       ssssssddd" +
         "       ssssddddd" +
         "     ssssddddddd",
 
+        " sssscccsssssss " +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "wsssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
+        "sssssssssssssssc" +
+        "sssssssscssssssc" +
+        "ssssss    ssssss" +
+        "wssss      sssss" +
+        "ssscc      sssss" +
+        "sssss      sssss" +
+        "cssss      sssss" +
+        "ssssss    ssssss" +
         "ssssssssssssssss" +
         "#sssssssssssssss" +
         "###sssssssssssss" +
         "ll########ssssss" +
-        "lllllllll#ssssss",
+        " llllllll#sssss ",
 
+        "  ssssssssssss  " +
+        " ssssssssssssss " +
+        "sssssccscsssssss" +
+        "ssssssccssssssss" +
+        "sssssssssssscsss" +
+        "@sssss    ssscss" +
+        "wssss      sscss" +
+        "sssss      sssss" +
+        "cssss      sssss" +
+        "cssss      sssss" +
+        "ssssss    cssssc" +
+        "sssssssccssssssc" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "wsssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "ssssssssssssssss" +
-        "cccsssDDDDDsssdd",
+        " ssssssssssssss " +
+        "  csssDDDDDsss  ",
 
         "                " +
         "                " +
