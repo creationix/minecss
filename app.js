@@ -112,6 +112,7 @@ function makeBlock(name, mask = 0b111111) {
     const textures = blocks[name];
     const block = document.createElement('div');
     block.setAttribute('class', `block`);
+    block.setAttribute('title', name.replace(/_/g, ' '));
     if (mask & 1) {
         const texture = textures[0].trim();
         if (texture) {
