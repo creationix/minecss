@@ -95,6 +95,56 @@
             }
         }
 
+        .block .water_still {
+            animation: water 20s steps(96) infinite;
+        }
+
+        @keyframes water {
+            100% {
+                background-position: 0 1536px;
+            }
+        }
+
+        .block .water_still {
+            animation: water_still 6s steps(95) infinite;
+        }
+
+        @keyframes water_still {
+            100% {
+                background-position: 0 -24320px;
+            }
+        }
+
+        .block .lava_flow {
+            animation: lava_flow 12s steps(255) infinite;
+        }
+
+        @keyframes lava_flow {
+            100% {
+                background-position: 0 -65280px;
+            }
+        }
+
+        .block .water_flow,
+        .block .lava_still {
+            animation: flow-2048 8s steps(127) infinite;
+        }
+
+        @keyframes flow-2048 {
+            100% {
+                background-position: 0 -32512px;
+            }
+        }
+
+        .block .sea_lantern {
+            animation: lantern 1s steps(4) infinite;
+        }
+
+        @keyframes lantern {
+            100% {
+                background-position: 0 1024px;
+            }
+        }
 
 
         .block div {
