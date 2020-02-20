@@ -293,21 +293,30 @@ function chunk({ short, blocks }) {
     let ry = 45;
     let orx = 0;
     let ory = 0;
+    let tz = -6000;
+    let otz = 0;
     requestAnimationFrame(updateRotation);
     function updateRotation() {
-        if (rx !== orx || ry !== ory) {
-            chunk.style.transform = `perspective(2000px) translate3d(0, 0, -6000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        if (rx !== orx || ry !== ory || tz !== otz) {
+            chunk.style.transform = `perspective(2000px) translate3d(0, 0, ${tz}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
             orx = rx;
             ory = ry;
+            otz = tz;
         }
         requestAnimationFrame(updateRotation);
     }
 
     window.onpointermove = (evt) => {
+        if (evt.buttons === 0) return;
         evt.preventDefault();
-        rx -= evt.movementY / 2;
-        if (rx < -90) rx = -90;
-        if (rx > 90) rx = 90;
+        console.log(evt);
+        if (evt.ctrlKey) {
+            tz += evt.movementY * 128;
+        } else {
+            rx -= evt.movementY / 2;
+            if (rx < -90) rx = -90;
+            if (rx > 90) rx = 90;
+        }
         ry += evt.movementX / 2;
     }
 
