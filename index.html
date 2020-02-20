@@ -30,6 +30,7 @@
             animation-iteration-count: infinite;
             animation-duration: 60s; */
             transform-style: preserve-3d;
+
         }
 
         @keyframes chunk-spin {
@@ -48,6 +49,7 @@
 
         .chunk .block {
             position: absolute;
+            transform-origin: center;
         }
 
         .icon,
@@ -63,8 +65,9 @@
         }
 
         .block {
-            width: 256px;
-            height: 256px;
+            position: absolute;
+            /* width: 256px; */
+            /* height: 256px; */
             transform-style: preserve-3d;
         }
 

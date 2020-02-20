@@ -199,7 +199,6 @@ for (const name in blocks) {
     }
     if (mask) insets[name] = mask;
 };
-console.log(insets);
 
 function tlevel(name) {
     return name ? transparency[name] || 0 : Infinity;
@@ -296,10 +295,12 @@ function chunk({ short, blocks }) {
     let ory = 0;
     let tz = -6000;
     let otz = 0;
+    let tx = 0;
+    let otx = 0;
     requestAnimationFrame(updateRotation);
     function updateRotation() {
-        if (rx !== orx || ry !== ory || tz !== otz) {
-            chunk.style.transform = `perspective(2000px) translate3d(0, 0, ${tz}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        if (rx !== orx || ry !== ory || tz !== otz || tx !== otx) {
+            chunk.style.transform = `perspective(2000px) translate3d(${tx}px, 0, ${tz}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
             orx = rx;
             ory = ry;
             otz = tz;
@@ -310,15 +311,15 @@ function chunk({ short, blocks }) {
     window.onpointermove = (evt) => {
         if (evt.buttons === 0) return;
         evt.preventDefault();
-        console.log(evt);
         if (evt.ctrlKey) {
             tz += evt.movementY * 128;
+            tx += evt.movementX * 8;
         } else {
             rx -= evt.movementY / 2;
             if (rx < -90) rx = -90;
             if (rx > 90) rx = 90;
+            ry += evt.movementX / 2;
         }
-        ry += evt.movementX / 2;
     }
 
     for (let y = 0; blocks[y]; y++) {
@@ -334,7 +335,7 @@ function chunk({ short, blocks }) {
                     shouldRender(name, get(x, y, z - 1), 16) | // back
                     shouldRender(name, get(x - 1, y, z), 32);  // left
                 if (!mask) continue;
-                console.log(x, y, z, name, mask.toString(2));
+                // console.log(x, y, z, name, mask.toString(2));
                 const block = makeBlock(name, mask);
                 block.style.transform = `translate3d(${x * 256 - 2048 + 128}px, ${y * 256 - mid}px, ${z * 256 - 2048 + 128}px)`;
                 chunk.appendChild(block);
