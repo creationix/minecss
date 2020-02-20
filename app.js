@@ -498,6 +498,9 @@ const map = {
 };
 
 window.onload = () => {
-    // document.body.appendChild(gallery());
-    document.body.appendChild(chunk(map));
+    if (/\?chunk/.test(document.location)) {
+        document.body.appendChild(chunk(map));
+    } else {
+        document.body.appendChild(gallery());
+    }
 }
