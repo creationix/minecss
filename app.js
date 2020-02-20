@@ -65,6 +65,7 @@ const blocks = {
     log_jungle: ["log_jungle_top", "log_jungle_top", "log_jungle"],
     log_oak: ["log_oak_top", "log_oak_top", "log_oak"],
     log_spruce: ["log_spruce_top", "log_spruce_top", "log_spruce"],
+    magma: ["magma"],
     planks_acacia: ["planks_acacia"],
     planks_big_oak: ["planks_big_oak"],
     planks_birch: ["planks_birch"],
@@ -363,6 +364,7 @@ const map = {
         "I": "iron_ore",
         "j": "jukebox",
         "l": "lava",
+        "m": "magma",
         "O": "leaves_oak",
         "o": "log_oak",
         "p": "grass_path",
@@ -465,7 +467,7 @@ const map = {
         " gggggdddgggxxx " +
         "gggggdddddxxxxgg" +
         "ggggggdddgxxxxxg" +
-        "gggggggpxxxxxggg" +
+        "gmmggggpxxxxxggg" +
         "wwwwwggppxxxgggg" +
         "gxxxwwwwpxxwwwww" +
         "ggggxwwwwwwwwggg" +
@@ -483,7 +485,7 @@ const map = {
         "dddddddddddddddd" +
         "dddddddddddddddd" +
         "dddddddddddddddd" +
-        "wddddddddddddddd" +
+        "wdmmdddddddddddd" +
         "dddddddddddddddd" +
         "ddddddd@dddddddd" +
         "dddddddddddddddd" +
@@ -508,8 +510,8 @@ const map = {
         "         sssssss" +
         "        sssssssd" +
         "       ssssssddd" +
-        "       ssssddddd" +
-        "     ssssddddddd",
+        "       msssddddd" +
+        "       mmddddddd",
 
         " sssscccsssssss " +
         "ssssssssssssssss" +

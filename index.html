@@ -105,7 +105,7 @@
             }
         }
 
-        .block .water_still {
+        .water_still {
             animation: water_still 6s steps(95) infinite;
         }
 
@@ -115,7 +115,7 @@
             }
         }
 
-        .block .lava_flow {
+        .lava_flow {
             animation: lava_flow 12s steps(255) infinite;
         }
 
@@ -125,8 +125,8 @@
             }
         }
 
-        .block .water_flow,
-        .block .lava_still {
+        .water_flow,
+        .lava_still {
             animation: flow-2048 8s steps(127) infinite;
         }
 
@@ -136,13 +136,23 @@
             }
         }
 
-        .block .sea_lantern {
+        .sea_lantern {
             animation: lantern 1s steps(4) infinite;
         }
 
         @keyframes lantern {
             100% {
                 background-position: 0 1024px;
+            }
+        }
+
+        .magma {
+            animation: magma 2s steps(10) infinite;
+        }
+
+        @keyframes magma {
+            100% {
+                background-position: 0 2560px;
             }
         }
 
