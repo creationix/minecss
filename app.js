@@ -75,6 +75,7 @@ const blocks = {
     quartz_ore: ["quartz_ore"],
     redstone_block: ["redstone_block"],
     redstone_ore: ["redstone_ore"],
+    sand: ["sand"],
     snow: ["snow", "dirt", "grass_side_snowed"],
     stone_diorite: ["stone_diorite"],
     stone_granite: ["stone_granite"],
@@ -287,25 +288,26 @@ function chunk({ short, blocks }) {
 
 const map = {
     short: {
-        "g": "grass",
-        "d": "dirt",
-        "s": "stone",
-        "c": "coal_ore",
-        "D": "stone_diorite",
-        "o": "log_oak",
-        "O": "leaves_oak",
-        "l": "lava",
-        "w": "water",
-        "b": "bed_head",
+        "#": "gravel",
         "B": "bed_feet",
+        "b": "bed_head",
         "C": "cactus",
-        "p": "grass_path",
-        "G": "gravel",
-        "T": "crafting_table",
-        "S": "bookshelf",
+        "c": "coal_ore",
+        "d": "dirt",
+        "D": "stone_diorite",
         "G": "glass",
-        "P": "planks_oak",
+        "g": "grass",
         "j": "jukebox",
+        "l": "lava",
+        "O": "leaves_oak",
+        "o": "log_oak",
+        "p": "grass_path",
+        "P": "planks_oak",
+        "S": "bookshelf",
+        "s": "stone",
+        "T": "crafting_table",
+        "w": "water",
+        "x": "sand",
     },
     blocks: [
         "                " +
@@ -394,19 +396,19 @@ const map = {
         "                ",
 
         "   ggpppggggg   " +
-        "  ggggpggggggg  " +
-        " gggggdddgggggg " +
-        "gggggdddddgggggg" +
-        "ggggggdddggggggg" +
-        "gggggggpgggggggg" +
-        "wwwwwggppggggggg" +
-        "ggggwwwwpggwwwww" +
-        "gggggwwwwwwwwggg" +
+        "  ggggpggggggx  " +
+        " gggggdddgggxxx " +
+        "gggggdddddxxxxgg" +
+        "ggggggdddgxxxxxg" +
+        "gggggggpxxxxxggg" +
+        "wwwwwggppxxxgggg" +
+        "gxxxwwwwpxxwwwww" +
+        "ggggxwwwwwwwwggg" +
         "ggggggwwwwgggggg" +
-        " ggggggggggggggg" +
-        "  gggggggggggggg" +
-        "  gggggggggggggg" +
-        "  gggggggggggggg" +
+        " ggggggggggPPPPP" +
+        "  gggggggggPPPPP" +
+        "  gggggggggPPPPP" +
+        "  gggggggggPPPPP" +
         "    gggggggggggg" +
         "      ggggg     ",
 
@@ -456,10 +458,10 @@ const map = {
         "ssssssssssssssss" +
         "ssssssssssssssss" +
         "ssssssssssssssss" +
-        "Gsssssssssssssss" +
-        "GGGsssssssssssss" +
-        "llGGGGGGGGssssss" +
-        "lllllllllGssssss",
+        "#sssssssssssssss" +
+        "###sssssssssssss" +
+        "ll########ssssss" +
+        "lllllllll#ssssss",
 
         "ssssssssssssssss" +
         "ssssssssssssssss" +
