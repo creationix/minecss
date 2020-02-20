@@ -1,6 +1,9 @@
 const blocks = {
     // Top, Bottom, Front, Right, Back, Left
+    bed_feet: ["bed_feet_top inset7", "planks_oak inset3", "bed_feet_end", "bed_feet_side", " ", "bed_feet_side"],
+    bed_head: ["bed_head_top inset7", "planks_oak inset3", " ", "bed_head_side", "bed_head_end", "bed_head_side"],
     bedrock: ["bedrock"],
+    bone_block: ["bone_block_top", "bone_block_top", "bone_block_side"],
     bookshelf: ["planks_oak", "planks_oak", "bookshelf"],
     brick: ["brick"],
     cactus: ["cactus_top", "cactus_bottom", "cactus_side inset1"],
@@ -17,11 +20,31 @@ const blocks = {
     dirt: ["dirt"],
     emerald_block: ["emerald_block"],
     emerald_ore: ["emerald_ore"],
+    furnace: ["furnace_top", "stone", "furnace_front_on", "furnace_side"],
+    glass: ["glass"],
+    glowstone: ["glowstone"],
     gold_block: ["gold_block"],
     gold_ore: ["gold_ore"],
     grass_path: ["grass_path_top inset1", "dirt", "grass_path_side"],
     grass: ["grass_top", "dirt", "grass_side"],
     gravel: ["gravel"],
+    hardened_clay_stained_black: ["hardened_clay_stained_black"],
+    hardened_clay_stained_blue: ["hardened_clay_stained_blue"],
+    hardened_clay_stained_brown: ["hardened_clay_stained_brown"],
+    hardened_clay_stained_cyan: ["hardened_clay_stained_cyan"],
+    hardened_clay_stained_gray: ["hardened_clay_stained_gray"],
+    hardened_clay_stained_green: ["hardened_clay_stained_green"],
+    hardened_clay_stained_light_blue: ["hardened_clay_stained_light_blue"],
+    hardened_clay_stained_lime: ["hardened_clay_stained_lime"],
+    hardened_clay_stained_magenta: ["hardened_clay_stained_magenta"],
+    hardened_clay_stained_orange: ["hardened_clay_stained_orange"],
+    hardened_clay_stained_pink: ["hardened_clay_stained_pink"],
+    hardened_clay_stained_purple: ["hardened_clay_stained_purple"],
+    hardened_clay_stained_red: ["hardened_clay_stained_red"],
+    hardened_clay_stained_silver: ["hardened_clay_stained_silver"],
+    hardened_clay_stained_white: ["hardened_clay_stained_white"],
+    hardened_clay_stained_yellow: ["hardened_clay_stained_yellow"],
+    hardened_clay: ["hardened_clay"],
     iron_block: ["iron_block"],
     iron_ore: ["iron_ore"],
     jukebox: ["jukebox_top", "planks_oak", "jukebox_side"],
@@ -40,56 +63,39 @@ const blocks = {
     log_jungle: ["log_jungle_top", "log_jungle_top", "log_jungle"],
     log_oak: ["log_oak_top", "log_oak_top", "log_oak"],
     log_spruce: ["log_spruce_top", "log_spruce_top", "log_spruce"],
+    planks_acacia: ["planks_acacia"],
+    planks_big_oak: ["planks_big_oak"],
+    planks_birch: ["planks_birch"],
+    planks_jungle: ["planks_jungle"],
+    planks_oak: ["planks_oak"],
+    planks_spruce: ["planks_spruce"],
     quartz_block_chiseled: ["quartz_block_chiseled_top", "quartz_block_bottom", "quartz_block_chiseled"],
     quartz_block_lines: ["quartz_block_lines_top", "quartz_block_bottom", "quartz_block_lines"],
     quartz_block: ["quartz_block_top", "quartz_block_bottom", "quartz_block_side"],
     quartz_ore: ["quartz_ore"],
     redstone_block: ["redstone_block"],
     redstone_ore: ["redstone_ore"],
+    snow: ["snow", "dirt", "grass_side_snowed"],
     stone_diorite: ["stone_diorite"],
     stone_granite: ["stone_granite"],
     stone: ["stone"],
     water: ["water_still"],
-    hardened_clay: ["hardened_clay"],
-    hardened_clay_stained_red: ["hardened_clay_stained_red"],
-    hardened_clay_stained_blue: ["hardened_clay_stained_blue"],
-    hardened_clay_stained_cyan: ["hardened_clay_stained_cyan"],
-    hardened_clay_stained_gray: ["hardened_clay_stained_gray"],
-    hardened_clay_stained_lime: ["hardened_clay_stained_lime"],
-    hardened_clay_stained_pink: ["hardened_clay_stained_pink"],
-    hardened_clay_stained_black: ["hardened_clay_stained_black"],
-    hardened_clay_stained_brown: ["hardened_clay_stained_brown"],
-    hardened_clay_stained_green: ["hardened_clay_stained_green"],
-    hardened_clay_stained_white: ["hardened_clay_stained_white"],
-    hardened_clay_stained_orange: ["hardened_clay_stained_orange"],
-    hardened_clay_stained_purple: ["hardened_clay_stained_purple"],
-    hardened_clay_stained_silver: ["hardened_clay_stained_silver"],
-    hardened_clay_stained_yellow: ["hardened_clay_stained_yellow"],
-    hardened_clay_stained_magenta: ["hardened_clay_stained_magenta"],
-    hardened_clay_stained_light_blue: ["hardened_clay_stained_light_blue"],
-    wool_colored_red: ["wool_colored_red"],
+    wool_colored_black: ["wool_colored_black"],
     wool_colored_blue: ["wool_colored_blue"],
+    wool_colored_brown: ["wool_colored_brown"],
     wool_colored_cyan: ["wool_colored_cyan"],
     wool_colored_gray: ["wool_colored_gray"],
-    wool_colored_lime: ["wool_colored_lime"],
-    wool_colored_pink: ["wool_colored_pink"],
-    wool_colored_black: ["wool_colored_black"],
-    wool_colored_brown: ["wool_colored_brown"],
     wool_colored_green: ["wool_colored_green"],
-    wool_colored_white: ["wool_colored_white"],
-    wool_colored_orange: ["wool_colored_orange"],
-    wool_colored_purple: ["wool_colored_purple"],
-    wool_colored_silver: ["wool_colored_silver"],
-    wool_colored_yellow: ["wool_colored_yellow"],
-    wool_colored_magenta: ["wool_colored_magenta"],
     wool_colored_light_blue: ["wool_colored_light_blue"],
-    glass: ["glass"],
-    furnace: ["furnace_top", "stone", "furnace_front_on", "furnace_side"],
-    glowstone: ["glowstone"],
-    snow: ["snow", "dirt", "grass_side_snowed"],
-    bone_block: ["bone_block_top", "bone_block_top", "bone_block_side"],
-    bed_head: ["bed_head_top inset7", "planks_oak inset3", " ", "bed_head_side", "bed_head_end", "bed_head_side"],
-    bed_feet: ["bed_feet_top inset7", "planks_oak inset3", "bed_feet_end", "bed_feet_side", " ", "bed_feet_side"],
+    wool_colored_lime: ["wool_colored_lime"],
+    wool_colored_magenta: ["wool_colored_magenta"],
+    wool_colored_orange: ["wool_colored_orange"],
+    wool_colored_pink: ["wool_colored_pink"],
+    wool_colored_purple: ["wool_colored_purple"],
+    wool_colored_red: ["wool_colored_red"],
+    wool_colored_silver: ["wool_colored_silver"],
+    wool_colored_white: ["wool_colored_white"],
+    wool_colored_yellow: ["wool_colored_yellow"],
 };
 
 function makeIcon(texture) {
@@ -171,18 +177,54 @@ function gallery() {
 
 
 const transparency = {
-    "bed_head": 1,
-    "bed_feet": 1,
-    "cactus": 1,
     "leaves_oak": 1,
     "water": 2,
     "glass": 2,
-    "grass_path": 3,
 };
+const insets = {};
+for (const name in blocks) {
+    const block = blocks[name];
+    let mask = 0;
+    for (let i = 0; i < 6; i++) {
+        const texture = block[i] || block[block.length - 1];
+        mask |= /inset/.test(texture) ? 2 << i : 0;
+    }
+    if (mask) insets[name] = mask;
+};
+console.log(insets);
 
 function tlevel(name) {
     return name ? transparency[name] || 0 : Infinity;
 }
+
+function ivert(inset) {
+    return (
+        (inset & 1 ? (2 | 4 | 8 | 16 | 32) : 0) |
+        (inset & 2 ? (1 | 4 | 8 | 16 | 32) : 0) |
+        (inset & 4 ? (1 | 2 | 8 | 16 | 32) : 0) |
+        (inset & 8 ? (1 | 2 | 4 | 16 | 32) : 0) |
+        (inset & 16 ? (1 | 2 | 4 | 8 | 32) : 0) |
+        (inset & 32 ? (1 | 2 | 4 | 8 | 16) : 0)
+    );
+}
+
+function shouldRender(self, other, direction) {
+    // If the direction is empty, render the face.
+    if (!other) return direction;
+
+    // If we're inset that direction, render the face.
+    if ((insets[self] | 0) & direction) return direction;
+
+    // If the direction is more transparent than us, render the face.
+    if (tlevel(self) < tlevel(other)) return direction;
+
+    // If the direction is inset, render the face.
+    if (ivert(insets[other]) & direction) return direction;
+
+    // If none of these apply, cull the face.
+    return 0;
+}
+
 
 function chunk({ short, blocks }) {
 
@@ -223,18 +265,15 @@ function chunk({ short, blocks }) {
             for (let x = 0; x < 16; x++) {
                 const name = get(x, y, z);
                 if (!name) continue;
-                const self = tlevel(name);
-                // Simple mask, assume all blocks are opaque.
-                // TODO: lookup non-opaque blocks.
                 const mask =
-                    (tlevel(get(x, y - 1, z)) <= self ? 0 : 1) | // top
-                    (tlevel(get(x, y + 1, z)) <= self ? 0 : 2) | // bottom
-                    (tlevel(get(x, y, z + 1)) <= self ? 0 : 4) | // front
-                    (tlevel(get(x + 1, y, z)) <= self ? 0 : 8) | // right
-                    (tlevel(get(x, y, z - 1)) <= self ? 0 : 16) |// back
-                    (tlevel(get(x - 1, y, z)) <= self ? 0 : 32); // left
+                    shouldRender(name, get(x, y - 1, z), 1) |  // top
+                    shouldRender(name, get(x, y + 1, z), 2) |  // bottom
+                    shouldRender(name, get(x, y, z + 1), 4) |  // front
+                    shouldRender(name, get(x + 1, y, z), 8) |  // right
+                    shouldRender(name, get(x, y, z - 1), 16) | // back
+                    shouldRender(name, get(x - 1, y, z), 32);  // left
                 if (!mask) continue;
-                console.log(x, y, z, name, mask.toString(2));
+                // console.log(x, y, z, name, mask.toString(2));
                 const block = makeBlock(name, mask);
                 block.style.transform = `translate3d(${x * 256 - 2048}px, ${y * 256 - mid}px, ${z * 256 - 2048}px)`;
                 chunk.appendChild(block);
@@ -245,12 +284,6 @@ function chunk({ short, blocks }) {
 
     return chunk;
 }
-
-window.onload = () => {
-    // document.body.appendChild(gallery());
-    document.body.appendChild(chunk(map));
-}
-
 
 const map = {
     short: {
@@ -271,6 +304,8 @@ const map = {
         "T": "crafting_table",
         "S": "bookshelf",
         "G": "glass",
+        "P": "planks_oak",
+        "j": "jukebox",
     },
     blocks: [
         "                " +
@@ -283,10 +318,10 @@ const map = {
         "                " +
         "                " +
         "                " +
-        "                " +
-        "                " +
-        "      O         " +
-        "                " +
+        "             P  " +
+        "             P  " +
+        "      O      P  " +
+        "             P  " +
         "                " +
         "                ",
 
@@ -300,10 +335,10 @@ const map = {
         "                " +
         "  O             " +
         " OoO            " +
-        "  O             " +
-        "      O         " +
-        "     OoO        " +
-        "      O         " +
+        "  O         PPP " +
+        "      O     P P " +
+        "     OoO    P P " +
+        "      O     PPP " +
         "                " +
         "                ",
 
@@ -317,10 +352,10 @@ const map = {
         "  O             " +
         " OOO            " +
         "OOoOO           " +
-        " OOO  O         " +
-        "  O  OOO        " +
-        "    OOoOO       " +
-        "     OOO        " +
+        " OOO  O    PPPPP" +
+        "  O  OOO   P   P" +
+        "    OOoOO  P   P" +
+        "     OOO   PPPPP" +
         "      O         " +
         "                ",
 
@@ -334,10 +369,10 @@ const map = {
         "                " +
         "                " +
         "  o             " +
-        "                " +
-        "      O         " +
-        "     OoO        " +
-        "      O         " +
+        "           PGGGP" +
+        "      O    G   G" +
+        "     OoO   G   G" +
+        "      O    PGGGP" +
         "                " +
         "                ",
 
@@ -351,15 +386,15 @@ const map = {
         "                " +
         "                " +
         "  o             " +
-        "       SS  GGGGG" +
+        "       SS  PGGGP" +
         "   bT      G   G" +
-        "   B  o    G   G" +
-        "           GGGGG" +
+        "   B  o    G j G" +
+        "           PGGGP" +
         "                " +
         "                ",
 
-        "   gggggggggg   " +
-        "  gggggggggggg  " +
+        "   ggpppggggg   " +
+        "  ggggpggggggg  " +
         " gggggdddgggggg " +
         "gggggdddddgggggg" +
         "ggggggdddggggggg" +
@@ -461,3 +496,8 @@ const map = {
         "                ",
     ]
 };
+
+window.onload = () => {
+    // document.body.appendChild(gallery());
+    document.body.appendChild(chunk(map));
+}

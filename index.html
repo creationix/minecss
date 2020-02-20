@@ -2,11 +2,12 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <link rel="stylesheet" href="png.css">
     <style>
         body {
             background-color: #012;
-            overflow: hidden;
         }
 
         .chunk {
@@ -21,7 +22,6 @@
             animation-timing-function: linear;
             animation-iteration-count: infinite;
             animation-duration: 30s;
-
             transform-style: preserve-3d;
         }
 
@@ -46,6 +46,9 @@
             background-size: 100%;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
+            /* background: none !important; */
+            /* opacity: 0.5; */
+            /* border: 1px solid #fff; */
         }
 
         .block {
